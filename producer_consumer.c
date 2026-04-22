@@ -15,16 +15,16 @@ int out = 0;
 
 void* produce(void *arg)
 {
-    sem_wait(&empty); // 5 can enter -> locked at 5
-    sem_wait(&mutex); // but one at time..! -> lock at 1
+    sem_wait(&empty); // 5 can enter  locked at 5
+    sem_wait(&mutex); // but one at time.. locks at 1
 
     int randomized = rand() % 101;
     buffer[in] = randomized;
     printf("Produced %d index %d.\n", buffer[in], in);
     in = (in + 1) % BUFFER_SIZE;
 
-    sem_post(&mutex); // one finshed -> unlock one -> new one can go in
-    sem_post(&full); // indicate that there is data entered we have to display
+    sem_post(&mutex); // one finshed -> unlock one -> new one can go inn
+    sem_post(&full); // indicate that there is data entered we have to show 
 
     return NULL;
 }
@@ -45,7 +45,7 @@ void* consume(void *arg)
 
 int main()
 {
-    srand(time(NULL)); // seed the random number generator
+    srand(time(NULL)); 
     sem_init(&empty, 0, 5);
     sem_init(&full, 0, 0);
     sem_init(&mutex, 0, 1);
