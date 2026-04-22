@@ -1,5 +1,5 @@
 /*
- Exercise 3: Readers-Writers Problem
+  Exercise 3: Readers-Writers Problem
     Implement a solution to the Readers-Writers problem where multiple readers can simultaneously access a shared resource, but writers require exclusive access.
     Use semaphores to manage access.                                          
   so multiple can read, one can write? no write while reading */
@@ -28,7 +28,7 @@ void* readfunction(void *arg) // many can read at once its fine, ONLY ONE CAN WR
 
     sem_wait(&mutex);
     reading--;
-    if (reading == 0) sem_post(&action);    // when the last reader is out, we can allow writer by giving them the action semaphore use
+    if (reading == 0) sem_post(&action);    //when last reader is out, we can allow writer by giving them semaphore
     sem_post(&mutex);
     
     return NULL;
